@@ -1,9 +1,13 @@
-
+import { useState } from 'react';
 import { Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useBusinesses } from '@/hooks/useBusinesses';
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const { data: businesses, isLoading } = useBusinesses(undefined, searchQuery);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -17,6 +21,8 @@ const Index = () => {
                 type="text" 
                 placeholder="Search businesses..." 
                 className="pl-10 w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -44,17 +50,21 @@ const Index = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-semibold mb-8">Featured Businesses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredListings.map((listing) => (
-              <Card key={listing.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="font-medium mb-2">{listing.name}</h3>
-                  <p className="text-sm text-gray-500 mb-4">{listing.category}</p>
-                  <p className="text-sm">{listing.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="text-center">Loading...</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {businesses?.map((business) => (
+                <Card key={business.id} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <h3 className="font-medium mb-2">{business.name}</h3>
+                    <p className="text-sm text-gray-500 mb-4">{business.category}</p>
+                    <p className="text-sm">{business.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
@@ -71,27 +81,6 @@ const categories = [
   { id: 6, name: "Home Services", count: 21 },
   { id: 7, name: "Automotive", count: 8 },
   { id: 8, name: "Technology", count: 11 }
-];
-
-const featuredListings = [
-  {
-    id: 1,
-    name: "Tech Solutions Inc",
-    category: "Technology",
-    description: "Professional IT services and consulting for businesses of all sizes."
-  },
-  {
-    id: 2,
-    name: "Green Garden Restaurant",
-    category: "Restaurants",
-    description: "Farm-to-table dining experience with organic ingredients."
-  },
-  {
-    id: 3,
-    name: "Wellness Center",
-    category: "Health & Wellness",
-    description: "Comprehensive health and wellness services for mind and body."
-  }
 ];
 
 export default Index;
