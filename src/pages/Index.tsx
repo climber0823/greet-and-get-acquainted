@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,10 +9,10 @@ const Index = () => {
   const { data: businesses, isLoading } = useBusinesses(undefined, searchQuery);
 
   return (
-    <div className="min-h-screen bg-gray-50 w-full">
+    <div className="w-full min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-white py-12 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-white py-12">
+        <div className="w-full max-w-7xl mx-auto px-4">
           <h1 className="text-4xl font-bold text-center mb-8 text-gray-900">Find Local Businesses</h1>
           <div className="max-w-2xl mx-auto relative">
             <div className="relative">
@@ -31,10 +30,10 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-12 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="w-full py-12">
+        <div className="w-full max-w-7xl mx-auto px-4">
           <h2 className="text-2xl font-semibold mb-8 text-gray-900">Browse Categories</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {categories.map((category) => (
               <Card key={category.id} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 text-center">
@@ -48,8 +47,8 @@ const Index = () => {
       </section>
 
       {/* Featured Listings Section */}
-      <section className="py-12 bg-white w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-white py-12">
+        <div className="w-full max-w-7xl mx-auto px-4">
           <h2 className="text-2xl font-semibold mb-8 text-gray-900">Featured Businesses</h2>
           {isLoading ? (
             <div className="text-center">Loading...</div>
