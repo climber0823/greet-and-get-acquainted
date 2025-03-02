@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,11 +10,11 @@ const Index = () => {
   const { data: businesses, isLoading } = useBusinesses(undefined, searchQuery);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-full">
       {/* Hero Section */}
-      <section className="bg-white py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-8">Find Local Businesses</h1>
+      <section className="bg-white py-12 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold text-center mb-8 text-gray-900">Find Local Businesses</h1>
           <div className="max-w-2xl mx-auto relative">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -30,9 +31,9 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-8">Browse Categories</h2>
+      <section className="py-12 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold mb-8 text-gray-900">Browse Categories</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {categories.map((category) => (
               <Card key={category.id} className="hover:shadow-lg transition-shadow">
@@ -47,9 +48,9 @@ const Index = () => {
       </section>
 
       {/* Featured Listings Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-semibold mb-8">Featured Businesses</h2>
+      <section className="py-12 bg-white w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold mb-8 text-gray-900">Featured Businesses</h2>
           {isLoading ? (
             <div className="text-center">Loading...</div>
           ) : (
